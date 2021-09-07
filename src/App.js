@@ -1,16 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { api } from "./services/Weather-Api"
 
 function App() {
 
+  const [weather, setWeather] = useState()
+  const city = "Rio de Janeiro"
+
   async function handleGetWeather(){
-    const response = await api.get("Curitiba")
-    console.log(response)
+    const response = await api.get(city)
+    console.log(response.data)
+    setWeather(response.data)
   }
 
   return (
     <>
-      <button onClick={handleGetWeather}>Search Weather</button>
+
+    <header>
+      <button onClick={handleGetWeather}>Buscar Previsão</button>
+    </header>
+
+    <main>
+      {JSON.stringify(weather)}
+    </main>
+
+
     </>
   );
 }
