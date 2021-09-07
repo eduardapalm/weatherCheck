@@ -11,9 +11,14 @@ function App() {
     setWeather(response.data);
   }
 
+  useEffect(() => {
+    handleGetWeather()
+  }, [])
+
   return (
     <>
       {/* <header>
+        <input type="text" className="getCity" placeholder="City's name"/>
         <button onClick={handleGetWeather}>Search Weather</button>
       </header> */}
 
