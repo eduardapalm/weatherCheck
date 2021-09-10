@@ -1,52 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { api } from "./services/Weather-Api";
+import * as S from './style/styled'
 
 function App() {
   const [weather, setWeather] = useState();
-  const city = "Sergipe";
-
-  async function handleGetWeather() {
-    const response = await api.get(city);
-    console.log(response.data);
-    setWeather(response.data);
+  const [city, setCity] = useState('');
+  const setValue = (event) => {
+    setCity(event.target.value)
   }
 
-  useEffect(() => {
-    handleGetWeather()
-  }, [])
+  async function handleGetWeather() {
+      const response = await api.get(city);
+      setWeather(response.data);
+      console.log(city)
+      console.log(response.data);
+  }
 
   return (
-    <>
-      {/* <header>
-        <input type="text" className="getCity" placeholder="City's name"/>
-        <button onClick={handleGetWeather}>Search Weather</button>
-      </header> */}
+    <S.Body>
+      <S.Header>
+          <S.Input type="text" id="city" placeholder="Type the city’s name " value={city} onChange={setValue}/>
+          <S.Button onClick={handleGetWeather}>Search</S.Button>
+      </S.Header>
 
       {weather && (
-        <main>
-          <h1>{city}</h1>
-
+        <S.Main>
           <section>
-            <h2>Current Weather:</h2>
+            <h1>Current Weather:</h1>
             <p>{weather.temperature}</p>
             <p>{weather.description}</p>
             <p>Wind speed: {weather.wind}</p>
           </section>
 
-          <section>
+
             <h2>Forecast:</h2>
-            {
-              weather.forecast.map( day =>
-                <>
-                  <p>{day.temperature}</p>
-                  <p>{day.wind}</p>
-                </>
-              )
-            }
-          </section>
-        </main>
+          <S.Forecast>
+            {weather.forecast.map((day) => (
+              <S.Days>
+                  <h3>{day.day}º Day</h3>
+                <p>{day.temperature}</p>
+                <p>{day.wind}</p>
+              </S.Days>
+            ))}
+          </S.Forecast>
+        </S.Main>
       )}
-    </>
+    </S.Body>
   );
 }
 
