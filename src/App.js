@@ -34,23 +34,23 @@ function App() {
 
       {weather && (
         <S.Main>
-          <section>
+          <S.Current>
             <h1>Current Weather:</h1>
-              <p><img src={thermometer} alt="thermometer" />{weather.temperature}</p>
+              <S.P><img src={thermometer} alt="thermometer" />{weather.temperature}</S.P>
 
-              <p><img src={cloudsSun} alt="cloud and sun" />{weather.description}</p>
+              <S.P><img src={cloudsSun} alt="cloud and sun" />{weather.description}</S.P>
 
-              <p><img src={wind} alt="wind" />{weather.wind}</p>
+              <S.P><img src={wind} alt="wind" />{weather.wind}</S.P>
 
-          </section>
+          </S.Current>
 
           <h2>Forecast:</h2>
           <S.Forecast>
             {weather.forecast.map((day) => (
               <S.Days>
                 <h3>{day.day}º Day</h3>
-                <p><img src={thermometer} alt="thermometer" />{day.temperature}</p>
-                <p><img src={wind} alt="wind" />{day.wind}</p>
+                <S.P2><img src={thermometer} alt="thermometer" />{day.temperature}</S.P2>
+                <S.P2><img src={wind} alt="wind" />{day.wind}</S.P2>
               </S.Days>
             ))}
           </S.Forecast>
