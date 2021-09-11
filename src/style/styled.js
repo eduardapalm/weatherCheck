@@ -56,6 +56,7 @@ export const Main = styled.main `
   flex-direction: column;
   justify-content: center;
   color: #fefefe;
+  font-size: 25px;
   font-family: 'Rajdhani', sans-serif;
 `
 
@@ -66,8 +67,5 @@ export const Forecast = styled.section`
 `
 
 export const Days = styled.div`
-display: flex;
-align-items: space-between;
-flex-direction: column;
-margin: 30px
+  margin: 0 30px;
 `
